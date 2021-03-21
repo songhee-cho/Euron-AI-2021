@@ -1,4 +1,4 @@
-# preview-week1P.md
+# preview-week1.md
 
 ### **1. Lecture's Agenda 🍐**
 
@@ -17,8 +17,13 @@
       -  Pictorial structure(Fischelr and Elschlager, 1973)
   - **Face detection(Viola & Johnes, 2001)**: real-time face detector
   - **Histogram of gradients(Dala & Triggs, 2005)**
-  - **ImageNet**: large scale visual recognition challenge to make more accurate graphical machine, SVM, AdaBoost models(This concept about ImageNet is not clear. I should check whether it is true.).
-    - Error rate of models using ImageNet is continuously decreasing. Especially, 2012 was the breakthrough moment.
+  - **PASCAL Visual Object Challenge(2006~2012)**: 20 obj categories
+  - **ImageNet**: solve a harder question, to recognize every objects.
+    - most of ML algorithms such as graphical machine, SVM, AdaBoost was very easy to overfit due to the complexity of visual data.
+    - an attempt to overcome dual reasons.
+    - 1. images are too complex, so models have to have high dimension of input and a lot of parameters to fit.
+    - 2. if training data is not enough , overfitting happens so fast.
+    - Error rate of models using ImageNet is steadily decreasing. Especially, 2012 was the breakthrough moment.
 
 * **CS231n overview**
   - CS231n focuses on one of the most important problems of visual recognition - image classification.
@@ -26,15 +31,16 @@
   - CNN(Convoutional Neural Networks) have become an important tool for obj recognition.
     - large scale visual recognition challenge: deeper networks / NEC-UIUC → SuperVision → GoogLeNet, VGG → MSRA
   - CNNs were not invented overnight.
-    - 1998: transistors
-    - 2012: transistors, GPUs 
+    - CNN for recognizing digits(LeCun, 1998): transistors 
+    - AlexNet(Krizhevsky, 2012): transistors, GPUs / increased computer availability, labeled datasets was comparatively enough 
   - The quest for visual intelligence goes far beyond obj recognition.
     - computer vision models that see(understand) a scene like human visual system.
     - it's far to develop network models to understand complex images. 
 
 ### **3. Summary(알게 된 내용 요약) 🧠**
 
-알게 된 내용을 짧게 요약하여 정리해주세요.
+- HW availablity(computational ability from GPUs, etc) and labeled data in computer vision are super-important in computer vision.
+- It's still hard to understand complex images using computer vision.
 
 ### **4. 질문 🤔**
 
