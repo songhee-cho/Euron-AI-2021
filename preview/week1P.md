@@ -1,3 +1,5 @@
+# preview-week1P.md
+
 ### **1. Lecture's Agenda 🍐**
 
 * **A brief history of computer vision**
@@ -10,9 +12,9 @@
   -  **Block world(Larry Roberts, 1963)**: early 1960' was the start of computer vision.
   -  **The summer vision project of MIT(Saymour Papert, 1966)**: it's an attempt to construct a significant part of a visual system(pattern recognition).
   -  **VISON(David Marr, 1970')**: input image → primal sketch →  2.5D sketch →  3D model
-  -  **Similar ideas in 1970'**: <every obj → simple geometric primitives>, <complex structure → collection of simpler shapes & geometric configuration>
+  -  **Similar ideas in 1970'**: (every obj → simple geometric primitives), (complex structure → collection of simpler shapes & geometric configuration)
       -  Generalized cylinder(Brooks & Binford, 1979)
-      -  Pictorial structure
+      -  Pictorial structure(Fischelr and Elschlager, 1973)
   - **Face detection(Viola & Johnes, 2001)**: real-time face detector
   - **Histogram of gradients(Dala & Triggs, 2005)**
   - **ImageNet**: large scale visual recognition challenge to make more accurate graphical machine, SVM, AdaBoost models(This concept about ImageNet is not clear. I should check whether it is true.).
@@ -22,8 +24,13 @@
   - CS231n focuses on one of the most important problems of visual recognition - image classification.
   - There is a number of visual recognition problems that are related to image classification, such as obj detection, img captioning.
   - CNN(Convoutional Neural Networks) have become an important tool for obj recognition.
+    - large scale visual recognition challenge: deeper networks / NEC-UIUC → SuperVision → GoogLeNet, VGG → MSRA
   - CNNs were not invented overnight.
+    - 1998: transistors
+    - 2012: transistors, GPUs 
   - The quest for visual intelligence goes far beyond obj recognition.
+    - computer vision models that see(understand) a scene like human visual system.
+    - it's far to develop network models to understand complex images. 
 
 ### **3. Summary(알게 된 내용 요약) 🧠**
 
