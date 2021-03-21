@@ -44,4 +44,4 @@
 
 ### **4. 질문 🤔**
 
-읽으면서 궁금한 사항이 있었다면 적어주세요.
+- complex structre를 simple shape으로 나타내려는 노력들(generalized cylinder, pictorial structure 등)은 연산량을 줄이기 위해서 연구된 내용인지 혹은 computer vision에서 물체를 기계가 이해할 수 있도록 만들기 위한 일종의 전처리를 시도한 것인지, 그 목적이 궁금합니다.
