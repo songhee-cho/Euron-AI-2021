@@ -69,10 +69,10 @@
 - **Linear Classification**: superimportant
   - linear classifers ⇒ neural network
   - linear classifer: f(x,W) = Wx + b
-  - 1. **x**: input image
-  - 2. **W**: parameters ir weights
-  - 3. **b**: bias(considering unbalance of dataset)
-  - 4. **f(x,W)**: score function of classifier
+    - **x**: input image
+    - **W**: parameters ir weights
+    - **b**: bias(considering unbalance of dataset)
+    - **f(x,W)**: score function of classifier
     
 
 - **Coming up!**
