@@ -28,7 +28,7 @@
 
 
 
-1. `svm.ipynb` 의 모든 cell이 실행된 파일을 제출해주세요.
+1. `svm.ipynb` 을 완료하신 후, `.py` 파일로 변환해서 제출해주세요. (모든 cell을 하나의 py 파일에 합쳐주세요)
 2. `linear_svm.py` 을 제출해주세요.
 3. `linear_classifier.py` 을 제출해주세요.
 
