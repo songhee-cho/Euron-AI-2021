@@ -28,7 +28,7 @@
 
 
 
-1. `knn.ipynb` 의 모든 cell이 실행된 파일을 제출해주세요.
+1. `knn.ipynb` 을 완료하신 후, `.py` 파일로 변환해서 제출해주세요. (모든 cell을 하나의 py 파일에 합쳐주세요)
 
 2. `k_nearest_neighbor.py` 을 제출해주세요.
 
