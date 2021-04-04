@@ -34,20 +34,19 @@
         - λ: hyper-parameter, control the normalization; if λ increases, the model becomes simple since regularization loss increases 
 
 - **Optimization**: start with random W and find a W that minimizes the loss
-  - slope → gradient(vector) 
-  - numerical gradient
-  
-  <3 step to caculate numerical gradient>
-   1) W
-   2) increment 1st element of W by a small value h
-   3) recompute the loss
+  - **slope → gradient(vector)** 
+  - **numerical gradient**
+  - **3 step to caculate numerical gradient**
+    - (1) W
+    - (2) increment 1st element of W by a small value h
+    - (3) recompute the loss
 
-  - analytic gradient
-  - gradient check
-  - gradient descent(GD)
-  - stochastic gradient descent(SGD): random mini batch
-  - RMSprop
-  - Adam
+  - **analytic gradient**
+  - **gradient check**
+  - **gradient descent(GD)**
+  - **stochastic gradient descent(SGD)**: random mini batch
+  - **RMSprop**: step size
+  - **Adam**: momentum
   
 - **Image Features**: color histogram(color spectrum), HoG(edge orientation), bag of words(benchmarked from NLP)
 - **ConvNets**: tweak the functional form of f
