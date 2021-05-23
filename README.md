@@ -1,6 +1,6 @@
-| 주차 | 내용             | 발표자                               | 발표자료 |
-| ---- | ---------------- | ------------------------------------ | -------- |
-| 8    | cs231n 8주차     | 조송희, 김지수                       | [📚]()    |
+| 주차 | 내용 |
+| ---- | ---- |
+| 8    | 실습 |
 
 <br />
 
@@ -16,19 +16,7 @@
 
 
 
-## pre-Assignment
-
-* 지금까지 배운 `Week_1 ~ Week_7` Summary 를 블로그에 정리해서 올려주세요.
-
-* https://cs231n.github.io/assignments2021/assignment2/ 의 `Q2: Batch Normalization (34%)` 을 완료해주세요.
-
-  💥 **Submission**
-
-<br />
-
-
-
-## post-Assignment
+## pre-Assignment (~5/30)
 
 * 다음 2가지의 튜토리얼을 완료한 후, 블로그에 전체적인 과정을 정리한 글을 각각 업로드해주세요.
 
@@ -39,6 +27,18 @@
   2. transfer learning
      * [Tensorflow](  https://www.tensorflow.org/tutorials/images/transfer_learning?hl=ko )
      * [Pytorch](https://tutorials.pytorch.kr/beginner/transfer_learning_tutorial.html)
+
+<br />
+
+
+
+## post-Assignment (~6/27)
+
+* 지금까지 배운 `Week_1 ~ Week_7` Summary 를 블로그에 정리해서 올려주세요.
+
+* https://cs231n.github.io/assignments2021/assignment2/ 의 `Q2: Batch Normalization (34%)` 을 완료해주세요.
+
+  💥 **Submission**
 
 <br />
 
