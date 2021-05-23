@@ -31,8 +31,14 @@
 ## post-Assignment
 
 * 다음 2가지의 튜토리얼을 완료한 후, 블로그에 전체적인 과정을 정리한 글을 각각 업로드해주세요.
-  * [이미지 분류]( https://www.tensorflow.org/tutorials/images/classification?hl=ko )
-  * [transfer learning]( https://www.tensorflow.org/tutorials/images/transfer_learning?hl=ko )
+
+  1. 이미지 분류
+     * [Tensorflow]( https://www.tensorflow.org/tutorials/images/classification?hl=ko )
+     * [Pytorch](https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html#sphx-glr-beginner-blitz-cifar10-tutorial-py)
+
+  2. transfer learning
+     * [Tensorflow](  https://www.tensorflow.org/tutorials/images/transfer_learning?hl=ko )
+     * [Pytorch](https://tutorials.pytorch.kr/beginner/transfer_learning_tutorial.html)
 
 <br />
 
