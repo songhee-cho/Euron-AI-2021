@@ -46,6 +46,22 @@
     - inception module: design a good local network topology(net within net) and then stack these modules on top of each other
   - No FC layers
   - Only 5 million params: 12x less than AlexNet 
+
+- **ResNet**
+  - very deep networks using residual connections
+    - residual connection 
+  - 152-layer model for ImageNet
+  - use network layers to fit a residual mapping instead of directly trying to fit a desired underlying mapping
+  - use layers to fit residual F(x) = H(x) - x, instead of H(x) directly
+  - full ResNet architecture:
+    - stack residual blocks
+    - every residual block has two 3×3 conv layers
+    - periodically, double # of filters and downsample spatially using stride 2(/2 in each dim)
+    - No FC layers at the end(only FC 1000 to output classes)
+ 
+-**NiN**
+  - similar with inception layer
+   
     
 ### **3. Summary(알게 된 내용 요약) 🧠**
   - AlexNet
