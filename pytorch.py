@@ -270,8 +270,13 @@ def three_layer_convnet(x, params):
     # TODO: Implement the forward pass for the three-layer ConvNet.                #
     ################################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+ 
+    conv1 = F.relu(F.conv2d(x, weight = conv_w1,  bias = conv_b1, padding = 2))
+    conv2 = F.relu(F.conv2d(conv1, weight = conv_w2,  bias = conv_b2, padding = 1))
 
-    pass
+    conv2 = flatten(conv2) 
+   
+    scores = conv2.mm(fc_w) + fc_b
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     ################################################################################
@@ -470,7 +475,13 @@ fc_b = None
 ################################################################################
 # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-pass
+conv_w1 = random_weight((channel_1, 3, 5, 5))
+conv_b1 = zero_weight((channel_1,))
+conv_w2 = random_weight((channel_2, channel_1, 3, 3))
+conv_b2 = zero_weight((channel_2,))
+
+fc_w = random_weight((channel_2*32*32, 10))
+fc_b =  zero_weight((10))
 
 # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 ################################################################################
@@ -541,46 +552,38 @@ You should initialize the weight matrices of the model using the Kaiming normal 
 After you implement the three-layer ConvNet, the `test_ThreeLayerConvNet` function will run your implementation; it should print `(64, 10)` for the shape of the output scores.
 """
 
-class ThreeLayerConvNet(nn.Module):
-    def __init__(self, in_channel, channel_1, channel_2, num_classes):
-        super().__init__()
-        ########################################################################
-        # TODO: Set up the layers you need for a three-layer ConvNet with the  #
-        # architecture defined above.                                          #
-        ########################################################################
-        # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+learning_rate = 3e-3
 
-        pass
+channel_1 = 32
+channel_2 = 16
 
-        # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-        ########################################################################
-        #                          END OF YOUR CODE                            #       
-        ########################################################################
+conv_w1 = None
+conv_b1 = None
+conv_w2 = None
+conv_b2 = None
+fc_w = None
+fc_b = None
 
-    def forward(self, x):
-        scores = None
-        ########################################################################
-        # TODO: Implement the forward function for a 3-layer ConvNet. you      #
-        # should use the layers you defined in __init__ and specify the        #
-        # connectivity of those layers in forward()                            #
-        ########################################################################
-        # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+################################################################################
+# TODO: Initialize the parameters of a three-layer ConvNet.                    #
+################################################################################
+# *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        pass
+conv_w1 = random_weight((channel_1, 3, 5, 5))
+conv_b1 = zero_weight((channel_1,))
+conv_w2 = random_weight((channel_2, channel_1, 3, 3))
+conv_b2 = zero_weight((channel_2,))
 
-        # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-        ########################################################################
-        #                             END OF YOUR CODE                         #
-        ########################################################################
-        return scores
+fc_w = random_weight((channel_2*32*32, 10))
+fc_b =  zero_weight((10))
 
+# *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+################################################################################
+#                                 END OF YOUR CODE                             #
+################################################################################
 
-def test_ThreeLayerConvNet():
-    x = torch.zeros((64, 3, 32, 32), dtype=dtype)  # minibatch size 64, image size [3, 32, 32]
-    model = ThreeLayerConvNet(in_channel=3, channel_1=12, channel_2=8, num_classes=10)
-    scores = model(x)
-    print(scores.size())  # you should see [64, 10]
-test_ThreeLayerConvNet()
+params = [conv_w1, conv_b1, conv_w2, conv_b2, fc_w, fc_b]
+train_part2(three_layer_convnet, params, learning_rate)
 
 """### Module API: Check Accuracy
 Given the validation or test set, we can check the classification accuracy of a neural network. 
@@ -683,11 +686,12 @@ optimizer = None
 ################################################################################
 # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-pass
+model = ThreeLayerConvNet(3, channel_1, channel_2, 10)
+optimizer = optim.SGD(model.parameters(), lr=learning_rate)
 
 # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 ################################################################################
-#                                 END OF YOUR CODE                             #
+#                                 END OF YOUR CODE                             
 ################################################################################
 
 train_part34(model, optimizer)
@@ -757,11 +761,24 @@ optimizer = None
 ################################################################################
 # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-pass
+model = nn.Sequential(
+    
+    nn.Conv2d(3, channel_1, kernel_size = [5,5], padding = 2, bias = True),
+    nn.ReLU(),
+    nn.Conv2d(channel_1, channel_2, kernel_size = [3,3], padding = 1, bias = True),
+    nn.ReLU(),
+    Flatten(),
+    nn.Linear(channel_2 * 32 * 32, 10)
+
+)
+
+optimizer = optim.SGD(model.parameters(), lr=learning_rate,
+                     momentum=0.9, nesterov=True)
+
 
 # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 ################################################################################
-#                                 END OF YOUR CODE                             #
+#                                 END OF YOUR CODE                             
 ################################################################################
 
 train_part34(model, optimizer)
@@ -817,42 +834,186 @@ If you are feeling adventurous there are many other features you can implement t
 ### Have fun and happy training! 
 """
 
-################################################################################
-# TODO:                                                                        #         
-# Experiment with any architectures, optimizers, and hyperparameters.          #
-# Achieve AT LEAST 70% accuracy on the *validation set* within 10 epochs.      #
-#                                                                              #
-# Note that you can use the check_accuracy function to evaluate on either      #
-# the test set or the validation set, by passing either loader_test or         #
-# loader_val as the second argument to check_accuracy. You should not touch    #
-# the test set until you have finished your architecture and  hyperparameter   #
-# tuning, and only run the test set once at the end to report a final value.   #
-################################################################################
+class ConvNet(nn.Module):
+  #conv->relu->conv->relu->affine->softmax
+    def __init__(self, in_channel, channel_1, channel_2, channel_3, hidden_dim1, hidden_dim2, p1, p2, p3, num_classes):
+        super().__init__()
+
+        self.convLayer1 = nn.Conv2d(in_channel, channel_1, kernel_size = [5,5], padding = 2, bias = True)
+        nn.init.kaiming_normal_(self.convLayer1.weight)
+
+        self.batchNorm1 = nn.BatchNorm2d(channel_1)
+
+        self.dropOut1 = nn.Dropout(p = p1)
+
+        ##
+        self.convLayer2 = nn.Conv2d(channel_1, channel_2, kernel_size = [3,3], padding = 1, bias = True)
+        nn.init.kaiming_normal_(self.convLayer2.weight)
+
+        self.batchNorm2 = nn.BatchNorm2d(channel_2)
+
+        self.dropOut2 = nn.Dropout(p = p2)
+
+        ##
+        self.convLayer3 = nn.Conv2d(channel_2, channel_3, kernel_size = [3,3], padding = 1, bias = True)
+        nn.init.kaiming_normal_(self.convLayer3.weight)
+
+        self.batchNorm3 = nn.BatchNorm2d(channel_3)
+
+        self.dropOut3 = nn.Dropout(p = p3)
+
+        ##
+
+        self.maxPoolLayer = nn.MaxPool2d(kernel_size = 2)
+
+        self.fc1 = nn.Linear(channel_3 * 16 * 16 , hidden_dim1, bias=True)
+        nn.init.kaiming_normal_(self.fc1.weight)
+
+        self.batchNormFc1 = nn.BatchNorm1d(hidden_dim1)
+
+        self.fc2 = nn.Linear(hidden_dim1, hidden_dim2, bias=True)
+        nn.init.kaiming_normal_(self.fc2.weight)
+
+        self.batchNormFc2 = nn.BatchNorm1d(hidden_dim2)
+
+        self.fc3 = nn.Linear(hidden_dim2, 10, bias=True)
+        nn.init.kaiming_normal_(self.fc3.weight)
+
+        # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+        ########################################################################
+        #                          END OF YOUR CODE                            #       
+        ########################################################################
+
+    def forward(self, x):
+        scores = None
+        ########################################################################
+        # TODO: Implement the forward function for a 3-layer ConvNet. you      #
+        # should use the layers you defined in __init__ and specify the        #
+        # connectivity of those layers in forward()                            #
+        ########################################################################
+        # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+
+        conv1 = self.dropOut1(F.relu(self.batchNorm1(self.convLayer1(x))))
+        conv2 = self.dropOut2(F.relu(self.batchNorm2(self.convLayer2(conv1))))
+        conv3 = self.dropOut3(F.relu(self.batchNorm3(self.convLayer3(conv2))))
+        maxpool = self.maxPoolLayer(conv3)
+
+        fc_ip = flatten(maxpool)
+        fc1 = F.relu(self.batchNormFc1(self.fc1(fc_ip)))
+        fc2 = F.relu(self.batchNormFc2(self.fc2(fc1)))
+        scores = self.fc3(fc2)
+        # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+        ########################################################################
+        #                             END OF YOUR CODE                         #
+        ########################################################################
+        return scores
+
+
+def test_ConvNet():
+    x = torch.zeros((64, 3, 32, 32), dtype=dtype)  # minibatch size 64, image size [3, 32, 32]
+    model = ConvNet(in_channel=3, channel_1=12, channel_2=8, channel_3=8,hidden_dim1 = 200, hidden_dim2 = 100, p1 = 0.5, p2 = 0.5, p3 = 0.5, num_classes=10)
+    scores = model(x)
+    print(scores.size())  # you should see [64, 10]
+test_ConvNet()
+
+def train_model(model, optimizer, epochs=1):
+    model = model.to(device=device)  # move the model parameters to CPU/GPU
+    for e in range(epochs):
+        for t, (x, y) in enumerate(loader_train):
+            model.train()  # put model to training mode
+            x = x.to(device=device, dtype=dtype)  # move to device, e.g. GPU
+            y = y.to(device=device, dtype=torch.long)
+
+            scores = model(x)
+            loss = F.cross_entropy(scores, y)
+
+            # Zero out all of the gradients for the variables which the optimizer
+            # will update.
+            optimizer.zero_grad()
+
+            # This is the backwards pass: compute the gradient of the loss with
+            # respect to each  parameter of the model.
+            loss.backward()
+
+            # Actually update the parameters of the model using the gradients
+            # computed by the backwards pass.
+            optimizer.step()
+
+            if t % print_every == 0:
+              print('Iteration %d, loss = %.4f' % (t, loss.item()))
+              check_accuracy_part34(loader_val, model)
+              print()
+    return model
+
+def check_accuracy(loader, model):
+    if loader.dataset.train:
+        print('Checking accuracy on validation set')
+    else:
+        print('Checking accuracy on test set')   
+    num_correct = 0
+    num_samples = 0
+    model.eval()  # set model to evaluation mode
+    acc = 0.0
+    with torch.no_grad():
+        for x, y in loader:
+            x = x.to(device=device, dtype=dtype)  # move to device, e.g. GPU
+            y = y.to(device=device, dtype=torch.long)
+            scores = model(x)
+            _, preds = scores.max(1)
+            num_correct += (preds == y).sum()
+            num_samples += preds.size(0)
+        acc = float(num_correct) / num_samples
+    return acc
+
+learning_rate = 3e-3
+channel_1 = [32]
+channel_2 = [64]
+channel_3 = [64]
+
 model = None
 optimizer = None
 
+best_model = None
+best_accuracy = 0
+################################################################################
+# TODO: Instantiate your ThreeLayerConvNet model and a corresponding optimizer #
+################################################################################
 # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+for ch1 in channel_1:
+  for ch2 in channel_2:
+    for ch3 in channel_3:
+      model = ConvNet(3, ch1, ch2, ch3, 5000, 1000, 0.15, 0.05, 0.0, 10)
+      optimizer = optim.SGD(model.parameters(), lr=learning_rate,
+                     momentum=0.9, nesterov=True)
 
-pass
+      trained_model = train_model(model, optimizer, epochs=10)
+      training_accuracy = check_accuracy(loader_train, trained_model)
+      val_accuracy = check_accuracy(loader_val, trained_model)
+
+      if(val_accuracy > best_accuracy):
+        best_model = trained_model
+        best_accuracy = val_accuracy
+
+      print("channel_1 =", ch1, ", channel_2 =", ch2, "channel_3 =", ch3)
+      print("training accuracy = ",training_accuracy, ", val accuracy = ", val_accuracy)
 
 # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 ################################################################################
-#                                 END OF YOUR CODE                             #
+#                                 END OF YOUR CODE                             
 ################################################################################
-
-# You should get at least 70% accuracy
-train_part34(model, optimizer, epochs=10)
+print("best model :", best_model, "best accuracy = ", best_accuracy)
 
 """## Describe what you did 
 
 In the cell below you should write an explanation of what you did, any additional features that you implemented, and/or any graphs that you made in the process of training and evaluating your network.
 
-**Answer:**
+**Answer:** 
+(conv->batchnorm->relu->dropout)x3->maxpool->(affine->batchnorm->relu)x2->affine->nesterov
 
 ## Test set -- run this only once
 
 Now that we've gotten a result we're happy with, we test our final model on the test set (which you should store in best_model). Think about how this compares to your validation set accuracy.
 """
 
-best_model = model
+#best_model = trainedModel
 check_accuracy_part34(loader_test, best_model)
