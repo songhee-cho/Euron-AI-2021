@@ -1,3 +1,8 @@
+## Topic: ```Object Detection```
+### EfficientDet
+- **Name of Thesis:** EfficientDet: Scalable and Efficient Object Detection
+- **Link:** https://arxiv.org/abs/1911.09070
+
 ### **Abstract**🍐
 Model efficiency has become increasingly important in computer vision. 
 In this paper, we systemically study neural network architeture design choices for ```object detection``` and propose several key optimizations to imporve efficiency.
