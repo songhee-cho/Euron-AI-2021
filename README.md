@@ -15,7 +15,8 @@
 | 8    | cs231n 8주차     | 조송희, 김지수                       | [📚]()    |
 | 9    | cs231n 9주차     | 이선민, 박가현                       | [📚](https://github.com/Ewha-Euron/Euron-AI-2021/blob/master/Week_9%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf)    |
 | 10   | cs231n 10주차    | 강다연(컴공), 장예서                 | [📚](https://github.com/Ewha-Euron/Euron-AI-2021/blob/master/Week_10%20%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf)    |
-| 11   | cs231n 11-12주차 | 김지인, 구미진, 황시은, 조송희, 김지수, 장세영       | [📚]()    |
+| 11   | cs231n 11-12주차(1) | 김지인, 구미진, 황시은 | [📚](https://github.com/Ewha-Euron/Euron-AI-2021/blob/master/Week11_%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_1.pdf)    |
+| 11   | cs231n 11-12주차(2) |조송희, 김지수, 장세영       | [📚](https://github.com/Ewha-Euron/Euron-AI-2021/blob/master/Week11_%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C_2.pdf)    |
 | 12   | cs231n 13주차 | 강다연(통),김연수, 장예서, 김지인      | [📚](https://github.com/Ewha-Euron/Euron-AI-2021/blob/master/Week12_%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf)    |
 | 13   | cs231n 14주차 | 조송희, 강다연(컴공), 구미진, 김지수 | [📚](https://github.com/Ewha-Euron/Euron-AI-2021/blob/master/Week13_%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf)    |
 | 14   | 논문 스터디 1     |  Object Detection                                  | [📚]()    |
